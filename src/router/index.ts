@@ -4,6 +4,11 @@ import useAuthUser from '../composables/useAuthUser'
 
 const routes = [
   {
+    name: "Home",
+    path: "/",
+    component: () => import("../pages/Home.vue"),
+  },
+  {
     name: "Register",
     path: "/register",
     component: () => import("../pages/Register.vue"),
