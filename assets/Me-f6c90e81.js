@@ -1,1 +1,0 @@
-import{d as s,u as a,a as t,o,c as n,e as r,t as c,k as l}from"./index-e5c8c800.js";const m={key:0},p=s({__name:"Me",setup(u){const{myUser:e}=a();return(_,i)=>t(e)?(o(),n("div",m,[r("div",null,"Hello "+c(t(e).email),1)])):l("",!0)}});export{p as default};
