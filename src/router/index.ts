@@ -1,23 +1,50 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+import { useAuthUser } from './composables/useAuthUser'
+
+const routes = [
+  {
+    name: "Register",
+    path: "/register",
+    component: () => import("../pages/Register.vue"),
+  },
+  {
+  name: "EmailConfirmation",
+  path: "/email-confirmation",
+  component: () => import("../pages/EmailConfirmation.vue"),
+  },
+  {
+    name: "Login",
+    path: "/login",
+    component: () => import("../pages/Login.vue"),
+  },
+  {
+    name: "ForgotPassword",
+    path: "/forgotPassword",
+    component: () => import("../pages/ForgotPassword.vue"),
+  },
+  {
+    name: "Me",
+    meta: {
+      requiresAuth: true,
+    },
+    path: "/me",
+    component: () => import("../pages/Me.vue"),
+  },
+]
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  history: createWebHistory(),
+  routes,
+});
+
+router.beforeEach((to) => {
+  // here we check it the user is logged in
+  // if they aren't and the route requries auth we redirect to the login page
+  // const { isLoggedIn } = useAuthUser();
+  // if (!isLoggedIn() && to.meta.requiresAuth) {
+  //   return { name: "Login" }
+  // }
 })
 
 export default router
