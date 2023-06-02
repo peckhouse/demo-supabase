@@ -15,7 +15,8 @@ const form = ref({
 
 // call the proper login method from the AuthUser composable
 // on the submit of the form
-const handleLogin = async (provider: string) => {
+// @ts-ignore
+const handleLogin = async (provider) => {
   try {
     provider
       ? await loginWithSocialProvider(provider)
@@ -23,7 +24,8 @@ const handleLogin = async (provider: string) => {
     router.push({ name: "Me" })
   } 
   catch (error) {
-    alert(error.message)
+    // @ts-ignore
+    console.log(error.message)
   }
 };
 </script>

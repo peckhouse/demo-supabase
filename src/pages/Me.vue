@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import useAuthUser from "../composables/useAuthUser";
-const { user } = useAuthUser();
+const { myUser } = useAuthUser();
 </script>
 
 <template>
-  <div v-if="user">
+  <div v-if="myUser">
         <!--user_metadata is the key supabase nests all arbitrary meta data under-->
-    <div>Hello {{ user.user_metadata.name }}</div>
+    <div>Hello {{ myUser.email }}</div>
   </div>
 </template>

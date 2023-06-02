@@ -2,17 +2,18 @@ import { ref } from "vue";
 
 import useSupabase from "./useSupabase"
 
-const user = ref(null)
+const myUser= ref()
 
 export default function useAuthUser() {
   const { supabase } = useSupabase()
 
-  const login = async ({ email, password }) => {
+  const login = async ({ email, password }: { email: string, password:string }) => {
     const { data: { user }, error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) throw error
-    return user
+    myUser.value = user
   }
 
+  // @ts-ignore
   const loginWithSocialProvider = async (provider) => {
     const { data, error } = await supabase.auth.signInWithOAuth({ provider })
     if (error) throw error
@@ -25,32 +26,33 @@ export default function useAuthUser() {
   }
 
   const isLoggedIn = () => {
-    return !!user.value
+    return !!myUser.value
   }
   /**
    * Register
    */
-  const register = async ({ email, password, ...meta }) => {
+  const register = async ({ email, password }: { email: string, password: string }) => {
     const { data: { user }, error } = await supabase.auth.signUp({ email, password })
 
     if (error) throw error
-    return user
+    myUser.value = user
   }
 
+  // @ts-ignore
   const update = async (data) => {
     const { data: { user }, error } = await supabase.auth.updateUser(data)
     if (error) throw error
-    return user
+    myUser.value = user
   }
 
-  const sendPasswordRestEmail = async (email) => {
+  const sendPasswordRestEmail = async (email: string) => {
     const { data, error } = await supabase.auth.resetPasswordForEmail(email)
     if (error) throw error
     return data
   }
 
   return {
-    user,
+    myUser,
     login,
     loginWithSocialProvider,
     isLoggedIn,

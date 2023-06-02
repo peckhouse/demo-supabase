@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { useAuthUser } from './composables/useAuthUser'
+import useAuthUser from '../composables/useAuthUser'
 
 const routes = [
   {
@@ -41,10 +41,10 @@ const router = createRouter({
 router.beforeEach((to) => {
   // here we check it the user is logged in
   // if they aren't and the route requries auth we redirect to the login page
-  // const { isLoggedIn } = useAuthUser();
-  // if (!isLoggedIn() && to.meta.requiresAuth) {
-  //   return { name: "Login" }
-  // }
+  const { isLoggedIn } = useAuthUser()
+  if (!isLoggedIn() && to.meta.requiresAuth) {
+    return { name: "Login" }
+  }
 })
 
 export default router

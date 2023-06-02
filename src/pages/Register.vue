@@ -28,7 +28,8 @@ const handleSubmit = async () => {
       query: { email: form.value.email },
     });
   } catch (error) {
-    alert(error.message);
+    // @ts-ignore
+    console.log(error.message);
   }
 };
 </script>
