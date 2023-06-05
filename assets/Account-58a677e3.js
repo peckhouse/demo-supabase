@@ -1,1 +1,0 @@
-import{d as a,u as o,a as t,o as n,c,e as s,t as r,k as u}from"./index-e9a726f8.js";const _={key:0},l=s("h1",null,"My account",-1),f=a({__name:"Account",setup(m){const{myUser:e}=o();return(i,p)=>t(e)?(n(),c("div",_,[l,s("p",null,"Email: "+r(t(e).email),1)])):u("",!0)}});export{f as default};
