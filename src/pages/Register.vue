@@ -42,4 +42,8 @@ const handleSubmit = async () => {
     <label>Password <input v-model="form.password" type="password" /></label>
     <button>Register</button>
   </form>
+
+  <div>
+    <button @click.prevent="handleLogin('github')">Github</button>
+  </div>
 </template>

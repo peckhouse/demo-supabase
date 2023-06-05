@@ -15,7 +15,12 @@ export default function useAuthUser() {
 
   // @ts-ignore
   const loginWithSocialProvider = async (provider) => {
-    const { data, error } = await supabase.auth.signInWithOAuth({ provider })
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/demo-supabase/me?fromEmail=registrationConfirmation`
+      }
+    })
     if (error) throw error
     return data
   }

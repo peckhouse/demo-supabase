@@ -1,11 +1,9 @@
 <script setup lang="ts">
-
+import GlobalHeader from './components/GlobalHeader.vue'
 </script>
 
 <template>
-  <ul>
-    <li>Register</li>
-    <li>Login</li>
-  </ul>
+  <GlobalHeader />
+
   <RouterView />
 </template>
