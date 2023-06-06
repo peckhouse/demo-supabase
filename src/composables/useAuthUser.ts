@@ -8,19 +8,21 @@ export default function useAuthUser() {
   const { supabase } = useSupabase()
 
   const login = async ({ email, password }: { email: string, password:string }) => {
-    const { data: { user }, error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+
     if (error) throw error
-    myUser.value = user
+    return data
   }
 
   // @ts-ignore
   const loginWithSocialProvider = async (provider) => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { data , error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/demo-supabase/me?fromEmail=registrationConfirmation`
+        redirectTo: `${window.location.origin}/demo-supabase/`
       }
     })
+
     if (error) throw error
     return data
   }
@@ -37,17 +39,18 @@ export default function useAuthUser() {
    * Register
    */
   const register = async ({ email, password }: { email: string, password: string }) => {
-    const { data: { user }, error } = await supabase.auth.signUp({ email, password })
+    const { data, error } = await supabase.auth.signUp({ email, password })
 
     if (error) throw error
-    myUser.value = user
+    return data
   }
 
   // @ts-ignore
-  const update = async (data) => {
-    const { data: { user }, error } = await supabase.auth.updateUser(data)
+  const update = async (updatedData) => {
+    const { data, error } = await supabase.auth.updateUser(updatedData)
+    
     if (error) throw error
-    myUser.value = user
+    return data
   }
 
   const sendPasswordRestEmail = async (email: string) => {

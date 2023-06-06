@@ -29,12 +29,12 @@ const routes = [
     component: () => import("../pages/ForgotPassword.vue"),
   },
   {
-    name: "Me",
+    name: "Account",
     meta: {
       requiresAuth: true,
     },
     path: "/me",
-    component: () => import("../pages/Me.vue"),
+    component: () => import("../pages/Account.vue"),
   },
 ]
 

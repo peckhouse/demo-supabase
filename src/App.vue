@@ -4,6 +4,13 @@ import GlobalHeader from './components/GlobalHeader.vue'
 
 <template>
   <GlobalHeader />
-
-  <RouterView />
+  <main class="global-layout">
+    <RouterView />
+  </main>
 </template>
+
+<style lang="scss">
+.global-layout {
+  padding: 24px;
+}
+</style>

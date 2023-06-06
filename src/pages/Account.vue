@@ -5,7 +5,7 @@ const { myUser } = useAuthUser();
 
 <template>
   <div v-if="myUser">
-        <!--user_metadata is the key supabase nests all arbitrary meta data under-->
-    <div>Hello {{ myUser.email }}</div>
+    <h1>My account</h1>
+    <p>Email: {{ myUser.email }}</p>
   </div>
 </template>

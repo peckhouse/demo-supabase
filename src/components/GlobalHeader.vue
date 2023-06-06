@@ -10,7 +10,10 @@ const { myUser, logout } = useAuthUser()
     <RouterLink :to="{ name: 'Home' }" class="header__home"><SupabaseIcon /></RouterLink>
     <ul v-if="myUser">
       <li>
-        Hello {{  myUser.email }}
+        <span>Hello {{  myUser.email }}</span>
+      </li>
+      <li>
+        <RouterLink :to="{ name: 'Account' }">Account</RouterLink>
       </li>
       <li>
         <button @click="logout">Signout</button>
@@ -60,12 +63,38 @@ const { myUser, logout } = useAuthUser()
   li {
     display: inline-block;
     margin: 0 0 0 24px;
+
+    a, span {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 20px;
+    }
+
+    button {
+      background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+      border: 0;
+      border-radius: 12px;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 2.5;
+      outline: transparent;
+      padding: 0 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: box-shadow .2s ease-in-out;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+
+      &:focus, &:hover {
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+      }
+    }
   }
 
-  a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 20px;
-  }
 }
 </style>

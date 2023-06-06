@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 
 // Use necessary composables
 const router = useRouter();
-const { register } = useAuthUser();
+const { register, loginWithSocialProvider } = useAuthUser();
 
 // Form reactive ref to keep up with the form data
 const form = ref({
@@ -17,21 +17,26 @@ const form = ref({
 // function to hand the form submit
 const handleSubmit = async () => {
   try {
-
-        // use the register method from the AuthUser composable
-    await register(form.value);
-
-        // and redirect to a EmailConfirmation page the will instruct
-        // the user to confirm they're email address
+    await register(form.value)
     router.push({
       name: "EmailConfirmation",
       query: { email: form.value.email },
     });
   } catch (error) {
     // @ts-ignore
-    console.log(error.message);
+    console.log(error.message)
   }
-};
+}
+
+const handleLogin = async (provider: string) => {
+  try {
+    await loginWithSocialProvider(provider)
+  } 
+  catch (error) {
+    // @ts-ignore
+    console.log(error.message)
+  }
+}
 </script>
 
 <template>
